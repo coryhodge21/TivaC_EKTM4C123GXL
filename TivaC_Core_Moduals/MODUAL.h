@@ -19,7 +19,7 @@ typedef struct _MODULE_ {
     uint32_t BASE_ADDR;
 
     //! Array of Registers for this Module
-    REGISTER_HANDLE REGISTERS[];
+    Register_Handle Registers[];
 
 
 } MODULE_t;

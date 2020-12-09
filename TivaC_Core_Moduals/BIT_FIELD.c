@@ -1,19 +1,19 @@
 /*
+ * ++ update field
  * BIT_FIELD.c
  *
  *  Created on: Dec 6, 2020
  *      Author: coryhodge
  */
+
+// ++ update field
 #include "BIT_FIELD.h"
-
-
-// ========= GLOBAL INSTANCE =======
-BIT_FIELD_HANDLE BitField;
 
 // ========= ACTIONS ===============
 
 // Read the value masked by this bit field
 uint32_t read_this(void){
+    // ++ update
     return (*BitField->Register_Address) &
             BitField->Register_Mask;
 }
@@ -22,51 +22,72 @@ uint32_t read_this(void){
 //       into place
 // write the value masked by this bit field
 void write_this(uint32_t value) {
+    // ++ update
     (*BitField->Register_Address) =
             ( value & BitField->Register_Mask);
 }
 
 // Set the Value masked by this bit field
 void set_this(void) {
+    // ++ update
     *(BitField->Register_Address) |=
             BitField->Register_Mask;
 }
 
 // Clear the value masked by this bit field
 void clear_this(void){
-
+    // ++ update
     *(BitField->Register_Address) &=
                 ~(BitField->Register_Mask);
 }
 
+void assignParent_this(uint32_t address){
+    // ++ update
+    *(BitField->Register_Address) =
+                address;
+}
+
+// ++ update
 //==    Create BIT FIELD ==============
-BIT_FIELD_HANDLE CREATE_BIT_FIELD(void) {
 
-    // Create an instance of a bit field on the stack
-    // allocate memory for this bit field
-    //BIT_FIELD_HANDLE creating_Bit_Field = malloc(sizeof(BIT_FIELD_t));
-    BitField = malloc(sizeof(BIT_FIELD_t));
+//! \details this CREATE function allocates and
+//!             initializes the GLOBAL INSTANCE
+// ++ update
+BitField_t Create_BitField(void) {
 
-    // Assign Pointer to Parent Register
-    BitField->Register_Address = DEF_REGISTER_ADDRESS;
+    // ++ update
+    // allocate memory
+    //BitField = malloc(sizeof(BIT_FIELD_OBJ_t));
 
+    // Check allocation
+//    if (BitField == NULL){
+//        return NULL;
+//    }
+
+    // ++ update
     // Assign Members
     BitField->Register_Mask = DEF_REGIESTER_MASK;
 
-    /*  Assign Bit Field Action (Function Pointers) */
+    /*  Assign Action (Function Pointers) */
 
+    BitField->assignParent = &assignParent_this;
+    // ++ update
     //read
     BitField->read = &read_this;
 
+    // ++ update
     // write
     BitField->write = &write_this;
 
+    // ++ update
     // set
     BitField->set = &set_this;
 
+    // ++ update
     // clear
     BitField->clear = &clear_this;
 
+    // ++ update
     // return
     return BitField;
 }

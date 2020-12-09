@@ -1,10 +1,12 @@
 /*
+ * ++ update field
  * BIT_FIELD.h
  *
  *  Created on: Dec 6, 2020
  *      Author: coryhodge
  */
 
+// ++ use bit_fild from #defines and append _H_
 #ifndef BIT_FIELD_H_
 #define BIT_FIELD_H_
 
@@ -13,18 +15,21 @@
 #include "stdlib.h"
 
 // == DEFINES =====================
-#define DEF_REGIESTER_MASK 0x01
-#define DEF_REGISTER_ADDRESS (uint32_t *)(0x00)
 
+// ++ copy paste the register mask from #defines line ///
+#define DEF_REGIESTER_MASK 0x00000100;
 
 // ========= STRUCTURE =============
+//! \brief This structure type defines the Bit Field
+// ++ update field
 typedef struct _BIT_FIELD_ {
+
+    // This Bit Field's Register mask
+    uint32_t Register_Mask;
 
     // Pointer to Parent Register
     uint32_t * Register_Address;
 
-    // This Bit Field's Register mask
-    uint32_t Register_Mask;
 
     /*  Function Pointers to actions    */
 
@@ -40,10 +45,25 @@ typedef struct _BIT_FIELD_ {
     // Clear the value masked by this bit field
     void (* clear)(void);
 
-} BIT_FIELD_t;
+    // Assign Parent Register Address Field for Bit Mask Operations
+    void (* assignParent)(uint32_t);
+
+// ++ update field
+
+// typedef Bit Field Name
+} BIT_FIELD_OBJ_t;
+
+
 
 // ========= TYPEDEF ===============
-typedef BIT_FIELD_t * BIT_FIELD_HANDLE;
+//! \brief : this typedef defines Bit Field type pointer
+// ++ update field
+typedef BIT_FIELD_OBJ_t * BitField_t;
+
+// ========= GLOBAL INSTANCE =======
+// Global instance of Bit Field, needed for function pointer
+// ++ update
+//BitField_t BitField;
 
 // ========= ACTIONS ===============
 
@@ -61,8 +81,12 @@ void set_this(void);
 // Clear the value masked by this bit field
 void clear_this(void);
 
+// assign parent register address
+void assignParent_this(uint32_t address);
+
 //==    Create BIT FIELD ==============
-BIT_FIELD_HANDLE CREATE_BIT_FIELD(void);
+// ++ update field
+BitField_t Create_BitField(void);
 
 #endif /* BIT_FIELD_H_ */
 
