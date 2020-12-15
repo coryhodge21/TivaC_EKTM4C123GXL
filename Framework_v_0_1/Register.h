@@ -21,6 +21,9 @@
  *      generic functions that carry out the operations.
  */
 
+#ifndef _MODULE_H_
+#define _MODULE_H_
+
 // Project Common Files
 #include "prj_common.h"
 
@@ -103,3 +106,4 @@ REGISTER_t BUILDER_REGISTER(void);
 
 
 
+#endif // _MODULE_H_
