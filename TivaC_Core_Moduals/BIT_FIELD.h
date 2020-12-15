@@ -22,14 +22,13 @@
 // ========= STRUCTURE =============
 //! \brief This structure type defines the Bit Field
 // ++ update field
-typedef struct _BIT_FIELD_ {
+struct _BIT_FIELD_ {
 
     // This Bit Field's Register mask
     uint32_t Register_Mask;
 
     // Pointer to Parent Register
     uint32_t * Register_Address;
-
 
     /*  Function Pointers to actions    */
 
@@ -51,14 +50,14 @@ typedef struct _BIT_FIELD_ {
 // ++ update field
 
 // typedef Bit Field Name
-} BIT_FIELD_OBJ_t;
+};
 
 
 
 // ========= TYPEDEF ===============
 //! \brief : this typedef defines Bit Field type pointer
 // ++ update field
-typedef BIT_FIELD_OBJ_t * BitField_t;
+typedef struct _BIT_FIELD_ * BitField_t;
 
 // ========= GLOBAL INSTANCE =======
 // Global instance of Bit Field, needed for function pointer
