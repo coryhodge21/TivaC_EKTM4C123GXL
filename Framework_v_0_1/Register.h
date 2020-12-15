@@ -69,25 +69,8 @@ typedef int32_t(*Read_fpt)(Reg_BF_e);
 
 typedef void(*Write_fpt)(Reg_BF_e, int32_t);
 
-// Function Definitions
- void set_this(Reg_BF_e Bit_Field_Mask){
-
-     *(volatile unsigned int *)SYSCTL_RCGC2 |= (Bit_Field_Mask);
-}
-
- void clear_this(Reg_BF_e Bit_Field_Mask) {
-
-     // Assign _BF mask to address MOD_REG
-     *(volatile unsigned int *)SYSCTL_RCGC2 &= ~(Bit_Field_Mask);
-}
-
 /**
  * Structure Decleration
- */
-struct REGISTER_obj;
-
-/**
- * Structure Definition
  */
 typedef struct REGISTER_obj {
 
@@ -118,19 +101,5 @@ typedef struct REGISTER_obj {
 // Function Declerations
 REGISTER_t BUILDER_REGISTER(void);
 
-
-// Constructor for this Register
-REGISTER_t BUILDER_REGISTER(void){
-
-    REGISTER_t Register;
-
-    Register.REG_BASE_ADDR = SYSCTL_RCGC2;
-
-    Register.set = &set_this;
-
-    Register.clear = &clear_this;
-
-    return Register;
-}
 
 
