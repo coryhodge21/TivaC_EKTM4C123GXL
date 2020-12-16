@@ -20,5 +20,11 @@ typedef double int64_t;
 // Project Common Data Type of ADDRESS
 typedef unsigned int Reg_Addr_t;
 
+// TODO: Not Tested, might be good sysntactical replacement
+/* *********** */
+typedef volatile unsigned int * ADDRESS;
+typedef ADDRESS * ADDRESS_VALUE;
+/* ***** Not Tested ***** */
+
 
 #endif // _PRJ_COMMON_

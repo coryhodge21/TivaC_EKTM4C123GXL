@@ -12,7 +12,8 @@
 // Register Struct
 #include "Register.h"
 
-#include "Module.h"
+// Module Struct
+//#include "Module.h"
 /**
  * main.c
  */
@@ -47,12 +48,23 @@ int main(void)
 
     x = y;
 
+    size_t sizeOfStructure = sizeof(Register);
+
+    x = sizeOfStructure;
+
+    y = x;
+
+    z = y;
+
     // system fault when this is uncommented
     // i think it is too large of a memory block
     // (mod contains register array of size 200 ints)
     // this is only 1 of 200 or more registers. So this
-    // method will not work
-    //Module_t Module = BUILDER_MODULE();
+//    // method will not work
+//    Module_t Module = BUILDER_MODULE();
+//
+//    sizeOfStructure = sizeof(Module);
+
 
 
 
